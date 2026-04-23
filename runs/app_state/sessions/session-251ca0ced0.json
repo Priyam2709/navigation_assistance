@@ -1,0 +1,280 @@
+{
+  "session_id": "session-251ca0ced0",
+  "created_at": "2026-04-20T16:54:02.999033Z",
+  "analysis_id": "analysis-d11245788a",
+  "track_id": 3,
+  "dominant_label": "crutch_user",
+  "current_zone_id": "help_desk",
+  "current_zone_label": "Help Desk",
+  "route": {
+    "destination_id": "platform_1",
+    "destination_label": "Platform 1",
+    "route_nodes": [
+      "help_desk",
+      "restroom",
+      "platform_access",
+      "platform_1"
+    ],
+    "route_points": [
+      {
+        "node_id": "help_desk",
+        "label": "Help Desk",
+        "x": 260,
+        "y": 130
+      },
+      {
+        "node_id": "restroom",
+        "label": "Restroom",
+        "x": 470,
+        "y": 130
+      },
+      {
+        "node_id": "platform_access",
+        "label": "Platform Access",
+        "x": 470,
+        "y": 320
+      },
+      {
+        "node_id": "platform_1",
+        "label": "Platform 1",
+        "x": 620,
+        "y": 320
+      }
+    ],
+    "instructions": [
+      "Move right from Help Desk to Restroom.",
+      "Move down from Restroom to Platform Access.",
+      "Move right from Platform Access to Platform 1.",
+      "You have arrived at the Platform 1."
+    ],
+    "step_count": 3,
+    "total_distance_m": 31.0,
+    "estimated_seconds": 44,
+    "estimated_time_label": "Less than 1 minute",
+    "accessibility_note": "Demo route uses the shortest corridor path from the current zone to the selected destination."
+  },
+  "passenger_url": "http://127.0.0.1:8005/passenger/session-251ca0ced0",
+  "qr_image_path": "C:\\Users\\Priyam\\Documents\\Codex\\2026-04-20-navigation-assistance-system-for-differently-abled\\runs\\app_state\\qr_codes\\session-251ca0ced0.png",
+  "qr_image_url": "/runs/app_state/qr_codes/session-251ca0ced0.png",
+  "track": {
+    "track_id": 3,
+    "dominant_label": "crutch_user",
+    "label_votes": {
+      "crutch_user": 7,
+      "wheelchair_user": 1,
+      "cane_user": 3
+    },
+    "max_confidence": 0.64821,
+    "first_frame": 24,
+    "last_frame": 59,
+    "observation_count": 11,
+    "current_zone_id": "help_desk",
+    "current_zone_label": "Help Desk",
+    "latest_bbox_xyxy": [
+      568.96,
+      158.16,
+      616.5,
+      270.69
+    ],
+    "observations": [
+      {
+        "frame_index": 24,
+        "class_name": "crutch_user",
+        "confidence": 0.34752,
+        "bbox_xyxy": [
+          982.3,
+          131.36,
+          1042.86,
+          250.14
+        ],
+        "center_norm": [
+          0.79108,
+          0.1987
+        ],
+        "zone_id": "restroom",
+        "zone_label": "Restroom"
+      },
+      {
+        "frame_index": 28,
+        "class_name": "crutch_user",
+        "confidence": 0.43069,
+        "bbox_xyxy": [
+          901.41,
+          86.31,
+          961.24,
+          193.33
+        ],
+        "center_norm": [
+          0.7276,
+          0.14564
+        ],
+        "zone_id": "restroom",
+        "zone_label": "Restroom Zone"
+      },
+      {
+        "frame_index": 41,
+        "class_name": "wheelchair_user",
+        "confidence": 0.2807,
+        "bbox_xyxy": [
+          941.51,
+          140.47,
+          1004.9,
+          209.65
+        ],
+        "center_norm": [
+          0.76032,
+          0.18235
+        ],
+        "zone_id": "restroom",
+        "zone_label": "Restroom Zone"
+      },
+      {
+        "frame_index": 52,
+        "class_name": "cane_user",
+        "confidence": 0.48025,
+        "bbox_xyxy": [
+          913.11,
+          197.74,
+          982.99,
+          323.28
+        ],
+        "center_norm": [
+          0.74067,
+          0.27136
+        ],
+        "zone_id": "restroom",
+        "zone_label": "Restroom Zone"
+      },
+      {
+        "frame_index": 53,
+        "class_name": "cane_user",
+        "confidence": 0.64821,
+        "bbox_xyxy": [
+          886.2,
+          128.13,
+          944.59,
+          245.13
+        ],
+        "center_norm": [
+          0.71515,
+          0.1944
+        ],
+        "zone_id": "restroom",
+        "zone_label": "Restroom Zone"
+      },
+      {
+        "frame_index": 54,
+        "class_name": "cane_user",
+        "confidence": 0.52109,
+        "bbox_xyxy": [
+          890.04,
+          78.31,
+          928.94,
+          144.41
+        ],
+        "center_norm": [
+          0.71054,
+          0.116
+        ],
+        "zone_id": "restroom",
+        "zone_label": "Restroom Zone"
+      },
+      {
+        "frame_index": 55,
+        "class_name": "crutch_user",
+        "confidence": 0.45626,
+        "bbox_xyxy": [
+          952.64,
+          55.86,
+          1018.78,
+          168.26
+        ],
+        "center_norm": [
+          0.77009,
+          0.11673
+        ],
+        "zone_id": "restroom",
+        "zone_label": "Restroom Zone"
+      },
+      {
+        "frame_index": 56,
+        "class_name": "crutch_user",
+        "confidence": 0.47352,
+        "bbox_xyxy": [
+          946.63,
+          112.64,
+          1018.29,
+          227.46
+        ],
+        "center_norm": [
+          0.76755,
+          0.17714
+        ],
+        "zone_id": "restroom",
+        "zone_label": "Restroom Zone"
+      },
+      {
+        "frame_index": 57,
+        "class_name": "crutch_user",
+        "confidence": 0.26707,
+        "bbox_xyxy": [
+          858.2,
+          154.49,
+          916.08,
+          270.97
+        ],
+        "center_norm": [
+          0.69308,
+          0.22159
+        ],
+        "zone_id": "restroom",
+        "zone_label": "Restroom Zone"
+      },
+      {
+        "frame_index": 58,
+        "class_name": "crutch_user",
+        "confidence": 0.29537,
+        "bbox_xyxy": [
+          720.27,
+          168.92,
+          757.51,
+          280.06
+        ],
+        "center_norm": [
+          0.57726,
+          0.23384
+        ],
+        "zone_id": "restroom",
+        "zone_label": "Restroom Zone"
+      },
+      {
+        "frame_index": 59,
+        "class_name": "crutch_user",
+        "confidence": 0.26458,
+        "bbox_xyxy": [
+          568.96,
+          158.16,
+          616.5,
+          270.69
+        ],
+        "center_norm": [
+          0.46307,
+          0.22336
+        ],
+        "zone_id": "help_desk",
+        "zone_label": "Help Desk"
+      }
+    ],
+    "zone_path": [
+      {
+        "zone_id": "restroom",
+        "zone_label": "Restroom"
+      },
+      {
+        "zone_id": "help_desk",
+        "zone_label": "Help Desk"
+      }
+    ]
+  },
+  "station_name": "Demo Central Railway Station"
+}

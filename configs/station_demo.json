@@ -1,0 +1,147 @@
+{
+  "station_name": "New Delhi Railway Station - Sector 1",
+  "description": "Active spatial sector covering main concourse and core passenger destinations.",
+  "nodes": {
+    "entrance": {
+      "label": "Exit / Entrance",
+      "position": [70, 320]
+    },
+    "ticket_counter": {
+      "label": "Ticket Counter",
+      "position": [70, 130]
+    },
+    "concourse": {
+      "label": "Main Concourse",
+      "position": [260, 320]
+    },
+    "help_desk": {
+      "label": "Help Desk",
+      "position": [260, 130]
+    },
+    "platform_access": {
+      "label": "Platform Access",
+      "position": [470, 320]
+    },
+    "restroom": {
+      "label": "Restroom",
+      "position": [470, 130]
+    },
+    "platform_1": {
+      "label": "Platform 1",
+      "position": [620, 320]
+    }
+  },
+  "edges": [
+    {
+      "from": "entrance",
+      "to": "concourse",
+      "distance": 12
+    },
+    {
+      "from": "ticket_counter",
+      "to": "help_desk",
+      "distance": 12
+    },
+    {
+      "from": "ticket_counter",
+      "to": "entrance",
+      "distance": 10
+    },
+    {
+      "from": "concourse",
+      "to": "help_desk",
+      "distance": 8
+    },
+    {
+      "from": "concourse",
+      "to": "platform_access",
+      "distance": 14
+    },
+    {
+      "from": "help_desk",
+      "to": "restroom",
+      "distance": 13
+    },
+    {
+      "from": "platform_access",
+      "to": "restroom",
+      "distance": 8
+    },
+    {
+      "from": "platform_access",
+      "to": "platform_1",
+      "distance": 10
+    }
+  ],
+  "destinations": {
+    "platform_1": {
+      "label": "Platform 1",
+      "node_id": "platform_1",
+      "icon": "P1"
+    },
+    "ticket_counter": {
+      "label": "Ticket Counter",
+      "node_id": "ticket_counter",
+      "icon": "TC"
+    },
+    "restroom": {
+      "label": "Restroom",
+      "node_id": "restroom",
+      "icon": "WC"
+    },
+    "entrance": {
+      "label": "Exit",
+      "node_id": "entrance",
+      "icon": "EX"
+    },
+    "help_desk": {
+      "label": "Help Desk",
+      "node_id": "help_desk",
+      "icon": "HD"
+    }
+  },
+  "frame_zones": [
+    {
+      "id": "ticket_counter",
+      "label": "Ticket Counter Zone",
+      "x_range": [0.0, 0.2],
+      "y_range": [0.0, 0.65]
+    },
+    {
+      "id": "help_desk",
+      "label": "Help Desk Zone",
+      "x_range": [0.2, 0.45],
+      "y_range": [0.0, 0.5]
+    },
+    {
+      "id": "entrance",
+      "label": "Entrance Zone",
+      "x_range": [0.0, 0.2],
+      "y_range": [0.65, 1.0]
+    },
+    {
+      "id": "concourse",
+      "label": "Concourse Zone",
+      "x_range": [0.2, 0.55],
+      "y_range": [0.45, 1.0]
+    },
+    {
+      "id": "restroom",
+      "label": "Restroom Zone",
+      "x_range": [0.55, 0.78],
+      "y_range": [0.0, 0.5]
+    },
+    {
+      "id": "platform_access",
+      "label": "Platform Access Zone",
+      "x_range": [0.55, 0.82],
+      "y_range": [0.5, 1.0]
+    },
+    {
+      "id": "platform_1",
+      "label": "Platform Zone",
+      "x_range": [0.82, 1.0],
+      "y_range": [0.0, 1.0]
+    }
+  ]
+}

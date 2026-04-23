@@ -1,0 +1,98 @@
+{
+  "session_id": "session-e52d24c4ff",
+  "created_at": "2026-04-20T17:20:29.723573Z",
+  "analysis_id": "analysis-51230d9262",
+  "track_id": 17,
+  "dominant_label": "wheelchair_user",
+  "current_zone_id": "platform_1",
+  "current_zone_label": "Platform Zone",
+  "route": {
+    "destination_id": "platform_1",
+    "destination_label": "Platform 1",
+    "route_nodes": [
+      "platform_1"
+    ],
+    "route_points": [
+      {
+        "node_id": "platform_1",
+        "label": "Platform 1",
+        "x": 620,
+        "y": 320
+      }
+    ],
+    "instructions": [
+      "You are already at the Platform 1."
+    ],
+    "step_count": 0,
+    "total_distance_m": 0.0,
+    "estimated_seconds": 0,
+    "estimated_time_label": "Already there",
+    "accessibility_note": "CV Analysis: Wheelchair profile detected. Graph modified to prioritize step-free corridors and ramp/elevator access points."
+  },
+  "passenger_url": "http://127.0.0.1:8005/passenger/session-e52d24c4ff",
+  "qr_image_path": "C:\\Users\\Priyam\\Documents\\Codex\\2026-04-20-navigation-assistance-system-for-differently-abled\\runs\\app_state\\qr_codes\\session-e52d24c4ff.png",
+  "qr_image_url": "/runs/app_state/qr_codes/session-e52d24c4ff.png",
+  "track": {
+    "track_id": 17,
+    "dominant_label": "wheelchair_user",
+    "label_votes": {
+      "wheelchair_user": 2
+    },
+    "max_confidence": 0.55346,
+    "first_frame": 92,
+    "last_frame": 99,
+    "observation_count": 2,
+    "current_zone_id": "platform_1",
+    "current_zone_label": "Platform Zone",
+    "latest_bbox_xyxy": [
+      1162.1,
+      124.33,
+      1263.11,
+      188.41
+    ],
+    "observations": [
+      {
+        "frame_index": 92,
+        "class_name": "wheelchair_user",
+        "confidence": 0.25286,
+        "bbox_xyxy": [
+          1191.19,
+          119.9,
+          1262.5,
+          170.88
+        ],
+        "center_norm": [
+          0.95847,
+          0.15145
+        ],
+        "zone_id": "platform_1",
+        "zone_label": "Platform Zone"
+      },
+      {
+        "frame_index": 99,
+        "class_name": "wheelchair_user",
+        "confidence": 0.55346,
+        "bbox_xyxy": [
+          1162.1,
+          124.33,
+          1263.11,
+          188.41
+        ],
+        "center_norm": [
+          0.94735,
+          0.16289
+        ],
+        "zone_id": "platform_1",
+        "zone_label": "Platform Zone"
+      }
+    ],
+    "zone_path": [
+      {
+        "zone_id": "platform_1",
+        "zone_label": "Platform Zone"
+      }
+    ],
+    "crop_url": "/runs/app_state/artifacts/analysis-51230d9262/crops/track_17.jpg"
+  },
+  "station_name": "New Delhi Railway Station - Sector 1"
+}

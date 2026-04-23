@@ -1,0 +1,130 @@
+{
+  "session_id": "session-fe52e9b047",
+  "created_at": "2026-04-20T17:23:43.984990Z",
+  "analysis_id": "analysis-51230d9262",
+  "track_id": 17,
+  "dominant_label": "wheelchair_user",
+  "current_zone_id": "platform_1",
+  "current_zone_label": "Platform Zone",
+  "route": {
+    "destination_id": "ticket_counter",
+    "destination_label": "Ticket Counter",
+    "route_nodes": [
+      "platform_1",
+      "platform_access",
+      "restroom",
+      "help_desk",
+      "ticket_counter"
+    ],
+    "route_points": [
+      {
+        "node_id": "platform_1",
+        "label": "Platform 1",
+        "x": 620,
+        "y": 320
+      },
+      {
+        "node_id": "platform_access",
+        "label": "Platform Access",
+        "x": 470,
+        "y": 320
+      },
+      {
+        "node_id": "restroom",
+        "label": "Restroom",
+        "x": 470,
+        "y": 130
+      },
+      {
+        "node_id": "help_desk",
+        "label": "Help Desk",
+        "x": 260,
+        "y": 130
+      },
+      {
+        "node_id": "ticket_counter",
+        "label": "Ticket Counter",
+        "x": 70,
+        "y": 130
+      }
+    ],
+    "instructions": [
+      "Head towards the Platform Access.",
+      "Turn right and proceed to the Restroom.",
+      "Turn left and proceed to the Help Desk.",
+      "Continue straight and proceed to the Ticket Counter.",
+      "You have arrived at the Ticket Counter."
+    ],
+    "step_count": 4,
+    "total_distance_m": 43.0,
+    "estimated_seconds": 61,
+    "estimated_time_label": "About 2 minutes",
+    "accessibility_note": "CV Analysis: Wheelchair profile detected. Graph modified to prioritize step-free corridors and ramp/elevator access points."
+  },
+  "passenger_url": "http://127.0.0.1:8005/passenger/session-fe52e9b047",
+  "qr_image_path": "C:\\Users\\Priyam\\Documents\\Codex\\2026-04-20-navigation-assistance-system-for-differently-abled\\runs\\app_state\\qr_codes\\session-fe52e9b047.png",
+  "qr_image_url": "/runs/app_state/qr_codes/session-fe52e9b047.png",
+  "track": {
+    "track_id": 17,
+    "dominant_label": "wheelchair_user",
+    "label_votes": {
+      "wheelchair_user": 2
+    },
+    "max_confidence": 0.55346,
+    "first_frame": 92,
+    "last_frame": 99,
+    "observation_count": 2,
+    "current_zone_id": "platform_1",
+    "current_zone_label": "Platform Zone",
+    "latest_bbox_xyxy": [
+      1162.1,
+      124.33,
+      1263.11,
+      188.41
+    ],
+    "observations": [
+      {
+        "frame_index": 92,
+        "class_name": "wheelchair_user",
+        "confidence": 0.25286,
+        "bbox_xyxy": [
+          1191.19,
+          119.9,
+          1262.5,
+          170.88
+        ],
+        "center_norm": [
+          0.95847,
+          0.15145
+        ],
+        "zone_id": "platform_1",
+        "zone_label": "Platform Zone"
+      },
+      {
+        "frame_index": 99,
+        "class_name": "wheelchair_user",
+        "confidence": 0.55346,
+        "bbox_xyxy": [
+          1162.1,
+          124.33,
+          1263.11,
+          188.41
+        ],
+        "center_norm": [
+          0.94735,
+          0.16289
+        ],
+        "zone_id": "platform_1",
+        "zone_label": "Platform Zone"
+      }
+    ],
+    "zone_path": [
+      {
+        "zone_id": "platform_1",
+        "zone_label": "Platform Zone"
+      }
+    ],
+    "crop_url": "/runs/app_state/artifacts/analysis-51230d9262/crops/track_17.jpg"
+  },
+  "station_name": "New Delhi Railway Station - Sector 1"
+}

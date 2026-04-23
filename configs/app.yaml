@@ -1,0 +1,12 @@
+app_name: Navigation Assistance System
+station_config: configs/station_demo.json
+weights: runs/detect/crossroad_baseline_smoke/weights/best.pt
+demo_video: runs/demo_video/crossroad_demo.mp4
+storage_root: runs/app_state
+upload_root: runs/uploads
+inference:
+  conf: 0.25
+  imgsz: 512
+  device: "0"
+  max_frames: 180
+  min_track_observations: 2

@@ -1,0 +1,10 @@
+path: C:/Users/Priyam/Documents/Codex/2026-04-20-navigation-assistance-system-for-differently-abled/data/final/detection
+train: images/train
+val: images/val
+test: images/test
+names:
+  0: person
+  1: wheelchair_user
+  2: walker_user
+  3: crutch_user
+  4: cane_user

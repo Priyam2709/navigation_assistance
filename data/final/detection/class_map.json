@@ -1,0 +1,17 @@
+{
+  "classes": [
+    "person",
+    "wheelchair_user",
+    "walker_user",
+    "crutch_user",
+    "cane_user"
+  ],
+  "class_to_id": {
+    "person": 0,
+    "wheelchair_user": 1,
+    "walker_user": 2,
+    "crutch_user": 3,
+    "cane_user": 4
+  },
+  "note": "The v1 dataset is user-centric, not aid-object-centric."
+}

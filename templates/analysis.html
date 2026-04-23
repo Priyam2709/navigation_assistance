@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="analysis-header">
+  <div>
+    <p class="eyebrow">Analysis Summary</p>
+    <h1>{{ analysis.analysis_id }}</h1>
+    <p class="lede">
+      {{ analysis.special_needs_count }} priority track(s) were found across {{ analysis.frames_analyzed }} frames.
+      This diagnostic report converts the spatial tracking data into actionable navigational waypoints.
+    </p>
+    <p class="meta">Sensor Stream: <code>{{ analysis.source_video_path }}</code></p>
+  </div>
+  <div class="analysis-stats">
+    <div class="status-card">
+      <span>Frames Processed</span>
+      <strong>{{ analysis.frames_analyzed }}</strong>
+    </div>
+    <div class="status-card">
+      <span>Time Span</span>
+      <strong>{{ analysis.duration_seconds }} s</strong>
+    </div>
+    <div class="status-card">
+      <span>Target Objects</span>
+      <strong>{{ analysis.special_needs_count }}</strong>
+    </div>
+    <div class="status-card">
+      <span>Active Destinations</span>
+      <strong>{{ destinations | length }}</strong>
+    </div>
+  </div>
+</section>
+
+<section class="panel-grid">
+  <article class="panel media-panel">
+    <div style="display:flex; justify-content:space-between; align-items:start;">
+       <h2>Annotated Vision Output</h2>
+       <span class="live-badge">Processed</span>
+    </div>
+    <video controls preload="metadata" class="analysis-video">
+      <source src="{{ analysis.annotated_video_url }}" type="video/mp4" />
+    </video>
+    <p class="meta">Overlay shows continuous object tracking, ID persistence, and spatial zone mapping bounding boxes.</p>
+  </article>
+
+  <article class="panel">
+    <p class="eyebrow">Routing Control</p>
+    <h2>Terminal Waypoint Graph</h2>
+    <div class="map-card" style="margin-top: 18px;">
+      {% include "partials/station_map.html" %}
+    </div>
+    <p class="meta">Graph topography utilized by the tracking algorithms to lock spatial positioning onto known safe travel paths.</p>
+  </article>
+</section>
+
+<section class="panel">
+  <h2>Prioritized Live Tracks</h2>
+  {% if analysis.passengers %}
+    <div class="track-grid">
+      {% for passenger in analysis.passengers %}
+        <article class="track-card">
+          <header style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 12px;">
+            <div>
+              <span class="track-tag">TRK_ID-{{ passenger.track_id }}</span>
+              <strong style="display:block;">{{ passenger.dominant_label.replace("_", " ").title() }}</strong>
+            </div>
+            {% if passenger.crop_url %}
+            <div style="width: 56px; height: 56px; border-radius: 12px; overflow: hidden; border: 2px solid var(--teal); background: rgba(0,0,0,0.5);">
+              <img src="{{ passenger.crop_url }}" style="width: 100%; height: 100%; object-fit: cover;" alt="CV Pattern Box" />
+            </div>
+            {% endif %}
+          </header>
+          <p>Locked Sector: <strong style="color:var(--teal);">{{ passenger.current_zone_label }}</strong></p>
+          <p>Frames Captured: <strong>{{ passenger.observation_count }}</strong> | Max Confidence: <strong style="color:var(--saffron);">{{ "%.2f"|format(passenger.max_confidence) }}</strong></p>
+          <p class="zone-path" style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 8px;">
+            {% for zone in passenger.zone_path %}
+              <span style="color: var(--muted);">{{ zone.zone_label }}</span>{% if not loop.last %} <span style="color:var(--saffron);">→</span> {% endif %}
+            {% endfor %}
+          </p>
+          <form action="/analysis/{{ analysis.analysis_id }}/session" method="post" class="stack-form" style="margin-top:16px;">
+            <input type="hidden" name="track_id" value="{{ passenger.track_id }}" />
+            <div>
+               <label for="destination-{{ passenger.track_id }}" style="display:block; margin-bottom: 6px; font-size: 0.85rem; color:var(--muted);">Set Waypoint Destination</label>
+               <select id="destination-{{ passenger.track_id }}" name="destination_id" style="width: 100%; border: 1px solid var(--line);">
+                 {% for destination in destinations %}
+                   <option value="{{ destination.destination_id }}">{{ destination.label }}</option>
+                 {% endfor %}
+               </select>
+            </div>
+            <button class="primary-button" type="submit">Establish Audio Link Session</button>
+          </form>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-state" style="padding: 40px; text-align: center; border: 1px dashed var(--line); border-radius: 20px;">
+      <p style="margin: 0;">No prioritized tracks identified in the supplied frames.</p>
+    </div>
+  {% endif %}
+</section>
+
+{% if selected_session %}
+<section class="panel session-panel">
+  <div class="session-heading">
+    <div>
+      <p class="eyebrow pulse">Link Established</p>
+      <h2>Audio Relay Authorized</h2>
+      <p class="lede">A persistent routing link has been created. Connect devices scanning the code below to sync coordinates.</p>
+    </div>
+    <a class="primary-button" href="{{ selected_session.passenger_url }}">Transmit Passenger Link</a>
+  </div>
+  <div class="session-grid">
+    <div>
+      <div class="metric-grid">
+        <article class="info-card">
+          <span>Session Token</span>
+          <strong style="font-family:monospace; color:var(--teal)">{{ selected_session.session_id[-8:] }}</strong>
+        </article>
+        <article class="info-card">
+          <span>ID Tag</span>
+          <strong>TRK-{{ selected_session.track_id }}</strong>
+        </article>
+        <article class="info-card">
+          <span>Current Pin</span>
+          <strong>{{ selected_session.current_zone_label }}</strong>
+        </article>
+        <article class="info-card">
+          <span>Target Pin</span>
+          <strong>{{ selected_session.route.destination_label }}</strong>
+        </article>
+        <article class="info-card">
+          <span>Est. Walk Time</span>
+          <strong style="color:var(--saffron);">{{ selected_session.route.estimated_time_label }}</strong>
+        </article>
+        <article class="info-card">
+          <span>Total Array Distance</span>
+          <strong>{{ selected_session.route.total_distance_m }} m</strong>
+        </article>
+      </div>
+      <p class="meta" style="margin-top:20px; padding: 12px; border-radius: 12px; background: rgba(13,207,195,0.08); border: 1px solid rgba(13,207,195,0.2);">{{ selected_session.route.accessibility_note }}</p>
+      <ol class="instructions" style="background: rgba(0,0,0,0.2); padding: 24px 24px 24px 40px; border-radius: 16px; border: 1px solid var(--line);">
+        {% for instruction in selected_session.route.instructions %}
+          <li style="margin-bottom:8px;">{{ instruction }}</li>
+        {% endfor %}
+      </ol>
+      <div class="callout">
+        <strong>Direct Gateway URL</strong>
+        <p><code style="background:rgba(255,255,255,0.08);">{{ selected_session.passenger_url }}</code></p>
+      </div>
+    </div>
+    <div class="qr-panel" style="display:flex; flex-direction:column; gap:16px;">
+      <div style="background:#fff; padding: 16px; border-radius: 20px;">
+        <img style="width:100%; height:auto;" src="{{ selected_session.qr_image_url }}" alt="Secure Link QR" />
+      </div>
+      <p class="meta" style="font-size: 0.8rem; text-align:center;">Scan with target device to initialize text-to-speech guidance array.</p>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

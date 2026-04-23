@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="passenger-shell" data-session-id="{{ session.session_id }}">
+  <div class="passenger-header">
+    <p class="eyebrow">Passenger Guidance Interface</p>
+    <h1>{{ session.route.destination_label }}</h1>
+    <p class="lede">You are currently in the {{ session.current_zone_label }}. Follow the route below to reach {{ session.route.destination_label }} at {{ session.station_name }}.</p>
+    <div class="pill-row">
+      <span class="pill">Passenger Track {{ session.track_id }}</span>
+      <span class="pill">{{ session.dominant_label.replace("_", " ").title() }}</span>
+      <span class="pill">{{ session.route.estimated_time_label }}</span>
+      <span class="pill">{{ session.route.total_distance_m }} m route</span>
+    </div>
+    <div class="hero-actions">
+      <button class="primary-button" id="speak-guidance">Speak Guidance</button>
+      <button class="secondary-button" id="stop-guidance" type="button">Stop Voice</button>
+    </div>
+    <p class="meta" id="voice-status">Tap Speak Guidance to hear the current navigation route.</p>
+  </div>
+
+  <section class="panel-grid">
+    <article class="panel">
+      <h2>Route Map</h2>
+      <p class="section-note">The start zone and destination node are highlighted on the station map below.</p>
+      <div class="map-card" id="route-map" data-route='{{ session.route.route_points | tojson }}' data-start="{{ session.current_zone_id }}" data-destination="{{ session.route.destination_id }}">
+        {% include "partials/station_map.html" %}
+      </div>
+    </article>
+
+    <article class="panel">
+      <h2>Accessible Route Summary</h2>
+      <div class="metric-grid">
+        <article class="info-card">
+          <span>Current zone</span>
+          <strong>{{ session.current_zone_label }}</strong>
+        </article>
+        <article class="info-card">
+          <span>Destination</span>
+          <strong>{{ session.route.destination_label }}</strong>
+        </article>
+        <article class="info-card">
+          <span>Steps</span>
+          <strong>{{ session.route.step_count }}</strong>
+        </article>
+        <article class="info-card">
+          <span>ETA</span>
+          <strong>{{ session.route.estimated_time_label }}</strong>
+        </article>
+      </div>
+      <p class="meta" style="margin-top:20px; padding: 16px; border-radius: 12px; background: rgba(13,207,195,0.1); border: 1px solid rgba(13,207,195,0.3); color: #fff; font-weight: 500;">
+        <strong style="color: var(--teal); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; display:block; margin-bottom:6px;">Vision Priority System Active</strong>
+        {{ session.route.accessibility_note }}
+      </p>
+      <ol class="instructions" id="instruction-list" style="margin-top: 16px;">
+        {% for instruction in session.route.instructions %}
+          <li>{{ instruction }}</li>
+        {% endfor %}
+      </ol>
+      <p class="meta">Session {{ session.session_id }} | Passenger track {{ session.track_id }}</p>
+    </article>
+  </section>
+
+
+</section>
+
+<script>
+  window.PASSENGER_SESSION = {{ session | tojson }};
+</script>
+<script src="/static/js/passenger.js"></script>
+{% endblock %}
