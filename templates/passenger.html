@@ -3,11 +3,11 @@
 {% block content %}
 <section class="passenger-shell" data-session-id="{{ session.session_id }}">
   <div class="passenger-header">
-    <p class="eyebrow">Passenger Guidance Interface</p>
+    <p class="eyebrow">Navigation Guide</p>
     <h1>{{ session.route.destination_label }}</h1>
     <p class="lede">You are currently in the {{ session.current_zone_label }}. Follow the route below to reach {{ session.route.destination_label }} at {{ session.station_name }}.</p>
     <div class="pill-row">
-      <span class="pill">Passenger Track {{ session.track_id }}</span>
+      <span class="pill">Passenger ID: {{ session.track_id }}</span>
       <span class="pill">{{ session.dominant_label.replace("_", " ").title() }}</span>
       <span class="pill">{{ session.route.estimated_time_label }}</span>
       <span class="pill">{{ session.route.total_distance_m }} m route</span>
@@ -49,7 +49,7 @@
         </article>
       </div>
       <p class="meta" style="margin-top:20px; padding: 16px; border-radius: 12px; background: rgba(13,207,195,0.1); border: 1px solid rgba(13,207,195,0.3); color: #fff; font-weight: 500;">
-        <strong style="color: var(--teal); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; display:block; margin-bottom:6px;">Vision Priority System Active</strong>
+        <strong style="color: var(--teal); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; display:block; margin-bottom:6px;">Accessibility Mode Active</strong>
         {{ session.route.accessibility_note }}
       </p>
       <ol class="instructions" id="instruction-list" style="margin-top: 16px;">
@@ -57,7 +57,7 @@
           <li>{{ instruction }}</li>
         {% endfor %}
       </ol>
-      <p class="meta">Session {{ session.session_id }} | Passenger track {{ session.track_id }}</p>
+      <p class="meta">Session {{ session.session_id }} | Passenger ID: {{ session.track_id }}</p>
     </article>
   </section>
 

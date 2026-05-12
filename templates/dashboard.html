@@ -3,76 +3,76 @@
 {% block content %}
 <section class="hero">
   <div class="hero-copy">
-    <p class="eyebrow"><span class="live-badge">Live System Matrix</span></p>
-    <h1>Navigation Assistance Tracking Control</h1>
+    <p class="eyebrow"><span class="live-badge">System Status: Active</span></p>
+    <h1>Navigation Assistance Dashboard</h1>
     <p class="lede">
-      Central command for monitoring mobility-aid user tracks across network nodes. The system continuously evaluates high-density streams, estimating real-time spatial zones to provide precision audio waypoint routing.
+      Welcome to the central dashboard. This system monitors video feeds to identify passengers who might need navigation assistance (like wheelchair users or visually impaired individuals) and helps route them safely to their destinations.
     </p>
     <div class="hero-actions">
       <form action="/analyze/demo" method="post">
         <button class="primary-button" type="submit" {% if not demo_ready %}disabled{% endif %}>
-          Initiate Stream Analysis (Demo Node)
+          Start Demo Analysis
         </button>
       </form>
     </div>
     <div class="mini-stat-grid">
       <article class="mini-stat">
-        <span>Vision Engine</span>
-        <strong>YOLO / DeepSort Hybrid</strong>
+        <span>Object Detection</span>
+        <strong>Active</strong>
       </article>
       <article class="mini-stat">
-        <span>Tracking Filter</span>
-        <strong>Assistive Mobility Profile</strong>
+        <span>User Tracking</span>
+        <strong>Enabled</strong>
       </article>
       <article class="mini-stat">
-        <span>Routing Graph</span>
-        <strong>Shortest Path Matrix</strong>
+        <span>Pathfinding</span>
+        <strong>Smart Routing</strong>
       </article>
     </div>
     <div style="margin-top:20px; font-size: 0.85rem; color: var(--muted); display:flex; gap: 20px;">
-      <span><strong>Source Stream:</strong> <code>{{ demo_video_path }}</code></span>
-      <span><strong>Inference Weights:</strong> <code>{{ weights_path }}</code></span>
+      <span><strong>Video Source:</strong> <code>{{ demo_video_path }}</code></span>
+      <span><strong>AI Model:</strong> <code>{{ weights_path }}</code></span>
     </div>
   </div>
   <div class="hero-panel">
     <div class="status-card">
-      <span>Active Edge Node</span>
+      <span>Current Station</span>
       <strong>{{ station_name }}</strong>
     </div>
     <div class="status-card">
-      <span>Operational Focus</span>
-      <strong class="pulse">Locate & Route</strong>
+      <span>System Status</span>
+      <strong class="pulse">Monitoring</strong>
     </div>
     <div class="status-card">
-      <span>Destination Array</span>
-      <strong>{{ destinations | length }} Locked Waypoints</strong>
+      <span>Available Destinations</span>
+      <strong>{{ destinations | length }} Locations</strong>
     </div>
     <div class="status-card">
-      <span>Pipeline Sequence</span>
-      <strong>Acquire → Track → Route</strong>
+      <span>Process</span>
+      <strong>Detect → Assist → Guide</strong>
     </div>
   </div>
 </section>
 
 <section class="panel-grid">
   <article class="panel">
-    <p class="eyebrow">Deploy Custom Node</p>
-    <h2>Ingest Custom Data Stream</h2>
-    <p class="section-note">Override the active node by injecting a new localized video feed. The perception engine will recalibrate and execute analysis across the supplied frames securely via local processing.</p>
+    <p class="eyebrow">Custom Analysis</p>
+    <h2>Upload Custom Video</h2>
+    <p class="section-note">Upload a video file to test the navigation system in a new environment. The system will process the video locally to identify passengers needing assistance.</p>
     <form action="/analyze/upload" method="post" enctype="multipart/form-data" class="stack-form">
       <div>
-        <label for="video_file" style="display:block; margin-bottom: 8px; color: var(--muted); font-weight: 600; font-size: 0.85rem;">Stream Payload (.mp4, .avi, .mkv)</label>
+        <label for="video_file" style="display:block; margin-bottom: 8px; color: var(--muted); font-weight: 600; font-size: 0.85rem;">Select Video File (.mp4, .avi, .mkv)</label>
         <input id="video_file" name="video_file" type="file" accept=".mp4,.avi,.mov,.mkv" required />
       </div>
-      <button class="secondary-button accent" type="submit" style="margin-top: 8px;">Compile & Analyze Stream</button>
+      <button class="secondary-button accent" type="submit" style="margin-top: 8px;">Analyze Video</button>
     </form>
   </article>
 
   <article class="panel">
     <div style="display:flex; justify-content:space-between; align-items:start;">
-      <p class="eyebrow">Node Topology Matrix</p>
+      <p class="eyebrow">Station Overview</p>
     </div>
-    <h2>Station Blueprint Graph</h2>
+    <h2>Station Layout</h2>
     <div class="map-card">
       {% include "partials/station_map.html" %}
     </div>
@@ -82,18 +82,18 @@
 
 <section class="panel">
   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
-    <h2>Tracking Registry</h2>
+    <h2>Recent Navigation Sessions</h2>
     <div class="info-card" style="padding: 10px 20px; border-radius: 999px; background: rgba(13, 207, 195, 0.05); border: 1px solid rgba(13, 207, 195, 0.2);">
-      <span style="margin:0; font-size: 0.8rem; letter-spacing: 0.05em; color: var(--teal); font-weight:700;">Total Computations: {{ analysis_count }}</span>
+      <span style="margin:0; font-size: 0.8rem; letter-spacing: 0.05em; color: var(--teal); font-weight:700;">Total Sessions: {{ analysis_count }}</span>
     </div>
   </div>
   {% if recent_analyses %}
     <div class="analysis-list">
       {% for analysis in recent_analyses %}
         <a class="analysis-card" href="/analysis/{{ analysis.analysis_id }}">
-          <span class="analysis-id">SID__{{ analysis.analysis_id[-6:] | upper }}</span>
-          <strong>Detected: {{ analysis.special_needs_count }} Priority Tracks</strong>
-          <small style="color: var(--muted);">Processed <strong>{{ analysis.frames_analyzed }}</strong> Frames | Node: {{ analysis.station_name }}</small>
+          <span class="analysis-id">Session: {{ analysis.analysis_id[-6:] | upper }}</span>
+          <strong>Found: {{ analysis.special_needs_count }} Passengers Needing Assistance</strong>
+          <small style="color: var(--muted);">Analyzed <strong>{{ analysis.frames_analyzed }}</strong> Frames | Station: {{ analysis.station_name }}</small>
         </a>
       {% endfor %}
     </div>
@@ -104,8 +104,8 @@
         <line x1="12" y1="8" x2="12" y2="16"></line>
         <line x1="8" y1="12" x2="16" y2="12"></line>
       </svg>
-      <h3 style="margin-bottom: 8px;">Awaiting Stream Data</h3>
-      <p style="margin: 0;">Initiate an analysis sequence above to populate the tracker registry.</p>
+      <h3 style="margin-bottom: 8px;">No Sessions Yet</h3>
+      <p style="margin: 0;">Start an analysis or upload a video to see navigation sessions here.</p>
     </div>
   {% endif %}
 </section>

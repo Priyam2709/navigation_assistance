@@ -1,27 +1,72 @@
 # Navigation Assistance System for Differently-Abled Passengers
 
-This repository now contains a teacher-demoable MVP of the navigation assistance system:
+This repository contains a teacher-demoable MVP of the navigation assistance system. It includes a pre-trained baseline detector, a bundled demo video, and a local FastAPI demo web application.
 
-- public dataset preparation
-- baseline detector training
-- video analysis for mobility-aid users
-- tracked passenger summaries
-- demo station map routing
-- passenger guidance sessions with QR code access
+## 🚀 Quick Start: Running the Demo App
 
-The app is designed as a local FastAPI demo around the trained detector.
+If you just want to run the application to see the demo, follow these simple steps.
 
-It gives you:
+### Prerequisites
+- Install [Python 3.10+](https://www.python.org/downloads/) (Make sure to check "Add Python to PATH" during installation if you are on Windows).
+- (Optional but Recommended) Git installed on your device.
 
-- a fixed dataset folder layout
-- source metadata and labeling rules
-- conversion scripts for the 5 public sources in the plan
-- builders for detection, tracking-eval, and ReID datasets
-- validation utilities for leakage checks, label-audit sheets, and loader smoke tests
-- a web dashboard for video analysis
-- a passenger guidance page with route instructions and browser speech
+### Step 1: Download the Project
+Clone this repository to your device:
+```bash
+git clone https://github.com/Priyam2709/navigation_assistance.git
+cd navigation_assistance
+```
+*(If you don't have Git, you can click the green "Code" button on GitHub and select "Download ZIP", then extract it and open a terminal inside the extracted folder).*
 
-## 1. Create the Python environment
+### Step 2: Set up a Virtual Environment
+It is highly recommended to use a virtual environment to avoid conflicts with other Python projects.
+
+**On Windows:**
+```powershell
+python -m venv .venv
+.\.venv\Scripts\activate
+```
+*(Note: If you get an error about execution policies on Windows, run `Set-ExecutionPolicy Unrestricted -Scope CurrentUser` in PowerShell as Administrator, or just use `.\.venv\Scripts\python` directly instead of activating).*
+
+**On macOS/Linux:**
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### Step 3: Install Dependencies
+Install all required libraries for the web app and object detection logic:
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+*(Note: The above command will install a CPU-compatible version of PyTorch which is sufficient for running the demo on most modern laptops. If you have a dedicated NVIDIA GPU and want faster inference, you can install the CUDA version of PyTorch by running: `pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124`)*
+
+### Step 4: Run the Application
+Start the local demo server:
+```bash
+python scripts/run_demo_app.py
+```
+
+### Step 5: View the App
+Open your web browser and navigate to:
+**http://127.0.0.1:8005/**
+
+**How to test the Demo:**
+1. Click **"Analyze Bundled Demo Video"**.
+2. Wait for the annotated video and passenger cards to appear.
+3. Choose a destination and create a guidance session for one detected passenger.
+4. Open the passenger page (or scan the QR code).
+5. Click **"Speak Guidance"** to hear the audio instructions.
+
+---
+
+## 🛠 Advanced Usage & Development
+
+The rest of this guide is for researchers or developers who want to download the original datasets, run the conversion pipelines, and train the YOLO detection model from scratch.
+
+### 1. Create the Python environment
 
 Use `Python 3.10` on this machine because it is the safest baseline for computer-vision dependencies and the current CV stack.
 
@@ -209,7 +254,7 @@ python scripts/run_demo_app.py
 Then open:
 
 ```text
-http://127.0.0.1:8000
+http://127.0.0.1:8005
 ```
 
 The fastest teacher-demo flow is:
@@ -225,7 +270,7 @@ The fastest teacher-demo flow is:
 If you only want to demonstrate the final guidance output, do this:
 
 1. Run `python scripts/run_demo_app.py`
-2. Open [http://127.0.0.1:8000](http://127.0.0.1:8000)
+2. Open [http://127.0.0.1:8005](http://127.0.0.1:8005)
 3. Click `Analyze Bundled Demo Video`
 4. On the analysis page, pick any detected passenger card
 5. Select a destination and click `Create Passenger Guidance Session`
